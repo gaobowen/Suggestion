@@ -1,3 +1,9 @@
+checkpoints*
+rendered_prompts
+dataset
+flash_attn*
+output
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]

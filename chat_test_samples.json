@@ -1,0 +1,83 @@
+[
+  {
+    "id": "qa-basic-001",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are a concise assistant."
+      },
+      {
+        "role": "user",
+        "content": "请用一句话解释 MLA 是什么。"
+      }
+    ],
+    "expected": {
+      "must_include": ["MLA", "注意力"],
+      "max_chars": 80
+    }
+  },
+  {
+    "id": "tool-call-001",
+    "tools": [
+      {
+        "type": "function",
+        "function": {
+          "name": "get_weather",
+          "description": "Get current weather by city name",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "city": {
+                "type": "string"
+              }
+            },
+            "required": ["city"]
+          }
+        }
+      }
+    ],
+    "messages": [
+      {
+        "role": "system",
+        "content": "You can call tools when needed."
+      },
+      {
+        "role": "user",
+        "content": "帮我查询北京现在天气。"
+      }
+    ],
+    "expected": {
+      "tool_call": {
+        "name": "get_weather",
+        "args": {
+          "city": "北京"
+        }
+      }
+    }
+  },
+  {
+    "id": "multi-turn-001",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are helpful and keep style consistent."
+      },
+      {
+        "role": "user",
+        "content": "给我3个训练大模型时减少显存占用的方法。"
+      },
+      {
+        "role": "assistant",
+        "content": "1) 混合精度训练 2) 梯度检查点 3) 梯度累积"
+      },
+      {
+        "role": "user",
+        "content": "请展开第2点。"
+      }
+    ],
+    "expected": {
+      "must_include": ["梯度检查点", "重计算", "显存"],
+      "min_chars": 40
+    }
+  }
+]
