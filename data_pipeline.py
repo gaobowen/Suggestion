@@ -520,7 +520,7 @@ def parse_args() -> argparse.Namespace:
 
 if __name__ == "__main__":
     args = parse_args()
-    args.dataset_path = "dataset/swallow-code-v2"
+    args.dataset_path = "dataset/minimind/pretrain_t2t.jsonl"
     args.dataset_type = "jsonl"
     args.text_column = "text"
     args.preview_count = 10
